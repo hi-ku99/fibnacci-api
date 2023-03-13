@@ -1,40 +1,39 @@
-from flask import Flask,request, jsonify
+from flask import Flask, request, jsonify
+from werkzeug.exceptions import BadRequest, NotFound, InternalServerError
+
 app = Flask(__name__)
 
-@app.route('/fib')
+@app.route("/fib")
 def get_request():
 
-    n = int(request.args.get('n', ''))
+    n = request.args.get("n",type=int)
     a, b = 0, 1
-    fib_l=[]
+    fib_l = []
     
     while n:
          n-=1
          fib_l.append(b)
          a, b = b, a+b
     
-    fib_sum = sum(fib_l)
-
-    body = { "results" : fib_sum}
+    fib = fib_l[n-1]
     
-    return body
+    return jsonify({"results" : fib})
 
-# @app.errorhandler(BadRequest)
-# @app.errorhandler(NotFound)
-# @app.errorhandler(InternalServerError)
-# def error_handler(e):
-#   res = jsonify({   
-#                   "status": e.name, 
-#                   "message": e.name 
-#                  })
-#   return res, e.code
+# URLの構文エラー
+@app.errorhandler(BadRequest)
+def handle_bad_request(e):
+    return jsonify({"status":400, "message":"Bad request."})
 
+# 間違ったURLにアクセス
+@app.errorhandler(NotFound)
+def handle_bad_request(e):
+    return jsonify({"status":404, "message":"Not found."})
+
+# サーバー内部で何らかのエラーが発生し、HTTPの要求を完了できなかった
+@app.errorhandler(InternalServerError)
+def handle_bad_request(e):
+    return jsonify({"status":404, "message":"Internal server error."})
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=80, debug=True)
-#  app.run()
-
-
-
-
 
