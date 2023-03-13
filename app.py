@@ -1,19 +1,10 @@
-from flask import Flask,request
-# app = Flask(__name__)
-
-# @app.route("/")
-# def index():
-#   return "<h1>Hello, Flask!</h1>"
-
-# if __name__ == "__main__":
-#   app.run(host="0.0.0.0", port=80, debug=True)
-
+from flask import Flask,request, jsonify
 app = Flask(__name__)
 
 @app.route('/fib')
 def get_request():
 
-    n = request.args.get('n', '')
+    n = int(request.args.get('n', ''))
     a, b = 0, 1
     fib_l=[]
     
@@ -28,19 +19,20 @@ def get_request():
     
     return body
 
-app.run()
-
-@app.errorhandler(BadRequest)
-@app.errorhandler(NotFound)
-@app.errorhandler(InternalServerError)
-def error_handler(e):
-    res = jsonify({   
-                    "status": error.name, 
-                    "message": error.name 
-                   })
-    return res, e.code
+# @app.errorhandler(BadRequest)
+# @app.errorhandler(NotFound)
+# @app.errorhandler(InternalServerError)
+# def error_handler(e):
+#   res = jsonify({   
+#                   "status": e.name, 
+#                   "message": e.name 
+#                  })
+#   return res, e.code
 
 
+if __name__ == "__main__":
+  app.run(host="0.0.0.0", port=80, debug=True)
+#  app.run()
 
 
 
