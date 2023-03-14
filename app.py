@@ -5,18 +5,25 @@ app = Flask(__name__)
 
 @app.route("/fib")
 def get_request():
+
+    try:
+
+        n = request.args.get("n", type = int)
+
+        if (n is None) or (n < 1):
+            raise ValueError    
+
+        a, b = 0, 1
+        while n:
+            n-=1
+            a, b = b, a+b
+
+        return jsonify({"results" : a})
     
-    n = request.args.get("n", type = int)
+    except ValueError:
+        return jsonify({"massage":"Value error"})
 
-    a, b = 0, 1
-    while n:
-        n-=1
-        a, b = b, a+b
-        
-    return jsonify({"results" : a})
     
-
-
 # URLの構文エラー
 @app.errorhandler(BadRequest)
 def handle_bad_request(e):
