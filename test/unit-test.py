@@ -21,4 +21,4 @@ class Testnumprint(unittest.TestCase):
             time.sleep(3)
 
     if __name__ == "__main__":
-        unittest.main(argv=['first-arg-is-ignored'], exit=False)
+        unittest.main()
