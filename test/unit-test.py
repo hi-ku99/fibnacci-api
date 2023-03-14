@@ -1,29 +1,20 @@
 import unittest
 import requests
-import time
 import json
  
 class Testnumprint(unittest.TestCase):
     
-    urls = ["https://fibonacciapi.azurewebsites.net/fib?n=3",
-           "https://fibonacciapi.azurewebsites.net/fb",
-           "https://fibonacciapi.azurewebsites.net/fb",
-           "https://fibonacciapi.azurewebsites.net/fb",
-           "https://fibonacciapi.azurewebsites.net/fb",
-           "https://fibonacciapi.azurewebsites.net/fb",
-           "https://fibonacciapi.azurewebsites.net/fb",
-            ]
+    def test1(self):
+        url = "https://fibonacciapi.azurewebsites.net/fib?n=3"
+        expect = requests.request('GET', url).json()
+        actual = json.dumps({'results': 2})
+        self.assertEqual(expect, actual)
 
-    actual = [json.dumps({'results': 2}),
-              json.dumps({"message":"Not found.","status":404})
-            ]
-    
-    def test_numprint(self,expect, actual):
-        for i, url in enumerate(urls):
-            response = requests.request('GET', urls[i])
-            expect = response.json()
-            self.assertEqual(expect, actual)
-            time.sleep(3)
+    def test2(self):
+        url = "https://fibonacciapi.azurewebsites.net/fi"
+        expect = requests.request('GET', url).json()
+        actual = json.dumps({"message":"Not found.","status":404})
+        self.assertEqual(expect, actual)
 
-    if __name__ == "__main__":
-        unittest.main()
+if __name__ == "__main__":
+    unittest.main()
