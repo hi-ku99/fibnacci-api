@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'FibonacciApi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_946FA5D7571E459FBC97B49FB8E6BCC1 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AAF65DF71BF346ACBFC0923BED93F82A }}
