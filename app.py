@@ -5,15 +5,17 @@ app = Flask(__name__)
 
 @app.route("/fib")
 def get_request():
-
+    
     n = request.args.get("n", type = int)
+
     a, b = 0, 1
-    
     while n:
-         n-=1
-         a, b = b, a+b
-    
+        n-=1
+        a, b = b, a+b
+        
     return jsonify({"results" : a})
+    
+
 
 # URLの構文エラー
 @app.errorhandler(BadRequest)
