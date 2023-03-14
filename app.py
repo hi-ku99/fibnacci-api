@@ -8,16 +8,12 @@ def get_request():
 
     n = request.args.get("n",type=int)
     a, b = 0, 1
-    fib_l = []
     
     while n:
          n-=1
-         fib_l.append(b)
          a, b = b, a+b
     
-    fib = fib_l[n-1]
-    
-    return jsonify({"results" : fib})
+    return jsonify({"results" : b})
 
 # URLの構文エラー
 @app.errorhandler(BadRequest)
@@ -32,7 +28,7 @@ def handle_bad_request(e):
 # サーバー内部で何らかのエラーが発生し、HTTPの要求を完了できなかった
 @app.errorhandler(InternalServerError)
 def handle_bad_request(e):
-    return jsonify({"status":404, "message":"Internal server error."})
+    return jsonify({"status":500, "message":"Internal server error."})
 
 if __name__ == "__main__":
   app.run(host="0.0.0.0", port=80, debug=True)
