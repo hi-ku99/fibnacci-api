@@ -37,7 +37,7 @@ jobs:
         with:
           name: python-app
           path: |
-            .
+            . 
             !venv/
 
   deploy:
@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'FibonacciApi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_31FCAC94B70A4888B00E3626636D1893 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_946FA5D7571E459FBC97B49FB8E6BCC1 }}
