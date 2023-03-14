@@ -37,7 +37,7 @@ jobs:
         with:
           name: python-app
           path: |
-            .app/
+            ./app
             !venv/
 
   deploy:
@@ -52,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: python-app
-          path: ./app/
+          path: ./app
           
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'FibonacciApi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ACFF4AD184B944D89D0789380FAE88E2 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_31FCAC94B70A4888B00E3626636D1893 }}
