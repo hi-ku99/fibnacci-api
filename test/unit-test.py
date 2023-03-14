@@ -6,7 +6,12 @@ import json
 class Testnumprint(unittest.TestCase):
     
     urls = ["https://fibonacciapi.azurewebsites.net/fib?n=3",
-           "https://fibonacciapi.azurewebsites.net/fb"
+           "https://fibonacciapi.azurewebsites.net/fb",
+           "https://fibonacciapi.azurewebsites.net/fb",
+           "https://fibonacciapi.azurewebsites.net/fb",
+           "https://fibonacciapi.azurewebsites.net/fb",
+           "https://fibonacciapi.azurewebsites.net/fb",
+           "https://fibonacciapi.azurewebsites.net/fb",
             ]
 
     actual = [json.dumps({'results': 2}),
