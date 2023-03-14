@@ -45,6 +45,13 @@ class Testnumprint(unittest.TestCase):
         expect = requests.request('GET', url).json()["message"]
         actual = "Value error."
         self.assertEqual(expect, actual)
+    
+    # クエリ引数なし
+    def test6(self):
+        url = "https://fibonacciapi.azurewebsites.net/fib"
+        expect = requests.request('GET', url).json()["message"]
+        actual = "Not found."
+        self.assertEqual(expect, actual)
 
 
 

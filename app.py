@@ -18,7 +18,7 @@ def get_request():
         return jsonify({"results" : a})
     
     except ValueError:
-        return jsonify({"message":"Value error"})
+        return jsonify({"message":"Value error."})
 
 # URLの構文エラー
 @app.errorhandler(BadRequest)
