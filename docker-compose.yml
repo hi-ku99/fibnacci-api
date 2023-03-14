@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  webapi:
+    container_name: webapi
+    build:
+      context: .
+    volumes:
+      - .:/work
+    ports:
+      - 5000:80
